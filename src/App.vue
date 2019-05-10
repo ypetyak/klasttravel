@@ -1,28 +1,52 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div class="mainDiv">
+        <AppHeader :language="language" @languageChange="languageChange"></AppHeader>
+        <div>
+            <router-view :language="language"></router-view>
+        </div>
+        <div>
+            <AppFooter :language="language"></AppFooter>
+        </div>
+
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AppHeader from "./components/AppHeader";
+import AppFooter from "./components/AppFooter"
 
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
+    name: 'App',
+    components: {
+        AppHeader,
+        AppFooter
+    },
+	data() {
+		return {
+			language: 'UA'
+		}
+	},
+	methods: {
+		languageChange() {
+			if (this.language === 'RU') {
+				this.language = 'UA'
+			} else {
+				this.language = 'RU'
+			}
+		}
+	}
+
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+body {
+	margin: 0px;
 }
+
+.mainDiv {
+    background-color: snow;
+}
+
 </style>
